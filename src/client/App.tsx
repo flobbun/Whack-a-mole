@@ -1,12 +1,11 @@
-import React from "react";
-import Main from "./pages/Main";
-import { ContextWrapper } from "./Context";
+import { GameProvider } from "./contexts/GameContext";
+import Main from "./pages/Main/Main";
 
 export const App = () => {
   return (
-    <ContextWrapper>
+    <GameProvider>
       <Main />
-    </ContextWrapper>
+    </GameProvider>
   );
 };
 

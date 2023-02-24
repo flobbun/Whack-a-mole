@@ -1,0 +1,3 @@
+.root {
+    @apply flex font-sans items-center flex-col justify-between h-screen;
+}
