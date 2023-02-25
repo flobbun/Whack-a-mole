@@ -21,6 +21,8 @@ const GameProvider = ({ children }: { children: React.ReactNode }) => {
                 debug: true,
                 canvas: canvasRef.current,
             }));
+        } else {
+            throw new Error("Canvas ref is not set");
         }
     }, []);
 
