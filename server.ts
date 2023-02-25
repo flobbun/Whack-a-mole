@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, json } from "express";
 import fs from "fs/promises";
 import path from "path";
 import express from "express";
@@ -43,6 +43,7 @@ async function createServer(isProd = process.env.NODE_ENV === "production") {
   const requestHandler = express.static(resolve("assets"));
   app.use(requestHandler);
   app.use("/assets", requestHandler);
+  app.use(json());
 
   if (isProd) {
     app.use(compression());
@@ -55,7 +56,7 @@ async function createServer(isProd = process.env.NODE_ENV === "production") {
   const stylesheets = getStyleSheets();
 
   // Routes
-  app.use("/api/leaderboard", getLeaderboard);
+  app.get("/api/leaderboard", getLeaderboard);
 
   app.use("*", async (req: Request, res: Response, next: NextFunction) => {
     const url = req.originalUrl;

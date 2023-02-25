@@ -1,7 +1,6 @@
 import { KaboomCtx } from "kaboom";
 import { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
-import { useGameContext } from "../contexts/GameContext";
 
 /**
  * Hook to manage game assets
