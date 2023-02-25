@@ -2,9 +2,29 @@
 import { Request, Response } from "express";
 
 /**
- * List of API examples.
  * @route GET /api
  */
-export const getApi = async (req: Request, res: Response) => {
-  return res.status(200).end();
+export const getLeaderboard = async (req: Request, res: Response) => {
+  return res.status(200).json([
+    {
+      name: "John Doe",
+      score: 100,
+    },
+    {
+      name: "Jane Doe",
+      score: 50,
+    },
+    {
+      name: "John Smith",
+      score: 25,
+    },
+    {
+      name: "Carl Smith",
+      score: 10,
+    },
+    {
+      name: "Maria Doe",
+      score: 5,
+    },
+  ]);
 };

@@ -11,7 +11,7 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     const rows = 3;
     const holeSize = 52;
     const holeSpace = 32;
-    const moleSpawnInterval = 1 * 100;
+    const moleSpawnInterval = 1 * 60;
     const totalWidth = holesPerRow * (holeSize + holeSpace) - holeSpace;
     const totalHeight = rows * (holeSize + holeSpace) - holeSpace;
     const [holePositions, setHolePositions] = useState<Vec2[]>([]);
@@ -60,9 +60,9 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
                 width: holeSize,
                 height: holeSize,
             }),
-            {
-                uncoveredTime: rand(0.4, 2),
-            },
+            lifespan(rand(0.4, 2), {
+                fade: 0.1
+            }),
             z(1),
             pos(position),
             area(),
@@ -72,11 +72,7 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
 
     const spawnRandomMole = () => {
         const randomHole = holePositions[Math.floor(Math.random() * holePositions.length)];
-        const mole = addMole(randomHole);
-
-        wait(mole!.uncoveredTime , () => {
-            mole!.destroy();
-        });
+        addMole(randomHole);
     };
 
     const setCursorHammer = () => {
@@ -100,8 +96,6 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     }
 
     useEffect(() => {
-        console.log("useEntities");
-
         if (game) {
             setBackground();
             addHoles();

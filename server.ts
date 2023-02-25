@@ -5,6 +5,7 @@ import express from "express";
 import compression from "compression";
 import serveStatic from "serve-static";
 import { createServer as createViteServer } from "vite";
+import { getLeaderboard } from "./src/server/routes/api";
 const isTest = process.env.NODE_ENV === "test" || !!process.env.VITE_TEST_BUILD;
 
 const resolve = (p: string) => path.resolve(__dirname, p);
@@ -52,6 +53,10 @@ async function createServer(isProd = process.env.NODE_ENV === "production") {
     );
   }
   const stylesheets = getStyleSheets();
+
+  // Routes
+  app.use("/api/leaderboard", getLeaderboard);
+
   app.use("*", async (req: Request, res: Response, next: NextFunction) => {
     const url = req.originalUrl;
 
@@ -92,6 +97,7 @@ async function createServer(isProd = process.env.NODE_ENV === "production") {
     }
   });
   const port = process.env.PORT || 7456;
+
   app.listen(Number(port), "0.0.0.0", () => {
     console.log(`App is listening on http://localhost:${port}`);
   });

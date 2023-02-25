@@ -11,7 +11,7 @@ const Main = () => {
   const { loaded } = useAssets(game);
   useEntities(game, loaded);
   useCollisions(game, loaded);
-  useScore(game);
+  useScore(game, loaded);
 
   useEffect(() => {
     if (game && loaded) {
