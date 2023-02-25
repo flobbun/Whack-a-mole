@@ -1,15 +1,14 @@
-import { KaboomCtx } from "kaboom"
-import { useEffect } from "react"
+import { KaboomCtx } from "kaboom";
+import { useEffect } from "react";
 
 /**
  * Hook to manage game score
  * @important Depends on the game context
  */
 const useScore = (game: KaboomCtx | null, loaded: boolean) => {
-
     useEffect(() => {
         if (game && loaded) {
-            game?.add([
+            const score = game?.add([
                 "score",
                 text("Score: 0"),
                 pos(20, 20),
@@ -17,9 +16,15 @@ const useScore = (game: KaboomCtx | null, loaded: boolean) => {
                 { value: 0 },
                 z(2),
             ]);
+
+            game?.on("whack", "mole", () => {
+                if (score) {
+                    score.value += 1;
+                    score.text = `Score: ${score.value}`;
+                }
+            });
         }
     }, [game, loaded]);
-
 }
 
 export default useScore

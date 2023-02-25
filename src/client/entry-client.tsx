@@ -8,9 +8,7 @@ const container = document.getElementById("app");
 
 const FullApp = () => (
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );
 

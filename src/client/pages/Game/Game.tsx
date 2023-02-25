@@ -1,12 +1,12 @@
 import useCollisions from "../../hooks/useCollisions";
-import useAssets from "../../../client/hooks/useAssets";
-import useEntities from "../../../client/hooks/useEntities";
+import useAssets from "../../hooks/useAssets";
+import useEntities from "../../hooks/useEntities";
 import { useGameContext } from "../../contexts/GameContext";
 import useScore from "../../hooks/useScore";
-import s from "./Main.module.css";
+import s from "./Game.module.css";
 import { useEffect } from "react";
 
-const Main = () => {
+const Game = () => {
   const { canvasRef, game } = useGameContext();
   const { loaded } = useAssets(game);
   useEntities(game, loaded);
@@ -16,25 +16,16 @@ const Main = () => {
   useEffect(() => {
     if (game && loaded) {
       game?.wait(120, () => {
-        console.log("game ended");
-      });
-
-      game?.on("whack", "mole", () => {
-        const scoreText = game?.get("score")[0];
-        if (scoreText) {
-          scoreText.value += 1;
-          scoreText.text = `Score: ${scoreText.value}`;
-        }
+        /// ...
       });
     }
   }, [game, loaded]);
 
   return (
     <div className={s.root}>
-      Gaming1Challenge
       <canvas ref={canvasRef}></canvas>
     </div>
   );
 };
 
-export default Main;
+export default Game;

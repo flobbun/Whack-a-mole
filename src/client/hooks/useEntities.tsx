@@ -33,6 +33,7 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
                 width: holeSize,
                 height: holeSize,
             }),
+            game.origin("center"),
             layer("background"),
             pos(position),
         ]);
@@ -63,6 +64,7 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
             lifespan(rand(0.4, 2), {
                 fade: 0.1
             }),
+            game.origin("center"),
             z(1),
             pos(position),
             area(),
