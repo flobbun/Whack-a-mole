@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * Hook to manage game entities (moles, holes, etc.)
  * @important Depends on the game context
  */
-const useEntities = (game: KaboomCtx) => {
+const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     const maxMoles = 4;
     const holesPerRow = 4;
     const rows = 3;
@@ -40,18 +40,16 @@ const useEntities = (game: KaboomCtx) => {
     };
 
     const addHoles = () => {
-        if (game) {
-            const startPos = {
-                x: (game.width() - totalWidth) / 2,
-                y: (game.height() - totalHeight) / 2,
-            }
+        const startPos = {
+            x: (game!.width() - totalWidth) / 2,
+            y: (game!.height() - totalHeight) / 2,
+        }
 
-            for (let i = 0; i < rows; i++) {
-                for (let j = 0; j < holesPerRow; j++) {
-                    const x = startPos.x + j * (holeSize + holeSpace);
-                    const y = startPos.y + i * (holeSize + holeSpace);
-                    addHole(vec2(x, y));
-                }
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < holesPerRow; j++) {
+                const x = startPos.x + j * (holeSize + holeSpace);
+                const y = startPos.y + i * (holeSize + holeSpace);
+                addHole(vec2(x, y));
             }
         }
     };
@@ -65,6 +63,7 @@ const useEntities = (game: KaboomCtx) => {
             {
                 uncoveredTime: rand(0.4, 2),
             },
+            z(1),
             pos(position),
             area(),
             "mole"
@@ -75,8 +74,8 @@ const useEntities = (game: KaboomCtx) => {
         const randomHole = holePositions[Math.floor(Math.random() * holePositions.length)];
         const mole = addMole(randomHole);
 
-        wait(mole.uncoveredTime , () => {
-            mole.destroy();
+        wait(mole!.uncoveredTime , () => {
+            mole!.destroy();
         });
     };
 
@@ -88,6 +87,7 @@ const useEntities = (game: KaboomCtx) => {
                 height: 32,
             }),
             pos(60, 60),
+            z(2),
             scale(2),
             area(),
             game.origin("center"),
@@ -100,18 +100,19 @@ const useEntities = (game: KaboomCtx) => {
     }
 
     useEffect(() => {
+        console.log("useEntities");
+
         if (game) {
             setBackground();
             addHoles();
             setCursorHammer();
             game?.loop(moleSpawnInterval * dt(), () => {
-                console.log(game?.get("mole").length);
                 if (game?.get("mole").length < maxMoles) {
                     spawnRandomMole();
                 }
             });
         }
-    }, [game]);
+    }, [game, loaded]);
 };
 
 export default useEntities;

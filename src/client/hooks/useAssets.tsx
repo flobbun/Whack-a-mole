@@ -7,7 +7,7 @@ import { useGameContext } from "../contexts/GameContext";
  * Hook to manage game assets
  * @important Depends on the game context
  */
-const useAssets = (game: KaboomCtx) => {
+const useAssets = (game: KaboomCtx | null) => {
     const [loaded, setLoaded] = useState(false);
 
     const loadAssets = async () => {
