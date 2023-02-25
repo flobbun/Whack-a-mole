@@ -1,19 +1,21 @@
 import { KaboomCtx } from "kaboom"
-import { useEffect, useState } from "react"
 
+/**
+ * Hook to manage game score
+ * @important Depends on the game context
+ */
 const useScore = (game: KaboomCtx) => {
 
-    const [score, setScore] = useState(0)
-
-    game?.add([
+    const scoreText = game?.add([
         text("Score: 0"),
-        pos(0, 0),
-        { value: score },
+        pos(20, 20),
+        scale(0.3),
+        { value: 0 },
         z(2),
-    ])
+    ]);
 
     return {
-        score,
+        scoreText
     }
 }
 
