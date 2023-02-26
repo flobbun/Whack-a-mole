@@ -19,7 +19,11 @@ const useLeaderboard = () => {
             },
         });
         const data = await response.json() as Leaderboard;
-        setLeaderboard(data);
+        setLeaderboard(
+            data.sort((a, b) => {
+                return b.score - a.score;
+            })
+        );
         setLoading(false);
         return data;
     };

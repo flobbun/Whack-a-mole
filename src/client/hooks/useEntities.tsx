@@ -36,6 +36,7 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
             game.origin("center"),
             layer("background"),
             pos(position),
+            "hole"
         ]);
         setHolePositions((prev) => [...prev, position]);
     };
@@ -73,7 +74,11 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     };
 
     const spawnRandomMole = () => {
-        const randomHole = holePositions[Math.floor(Math.random() * holePositions.length)];
+        if (holePositions.length === 0) {
+            return;
+        }
+        const randomPosition = Math.floor(Math.random() * holePositions.length);
+        const randomHole = holePositions[randomPosition];
         addMole(randomHole);
     };
 

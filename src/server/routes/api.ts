@@ -7,14 +7,14 @@ import { Request, Response } from "express";
 export const getLeaderboard = async (req: Request, res: Response) => {
   return res.status(200).json([
     {
+      id: 4,
+      name: "Carl Smith",
+      score: 10,
+    },
+    {
       id: 1,
       name: "John Doe",
       score: 100,
-    },
-    {
-      id: 2,
-      name: "Jane Doe",
-      score: 50,
     },
     {
       id: 3,
@@ -22,9 +22,9 @@ export const getLeaderboard = async (req: Request, res: Response) => {
       score: 25,
     },
     {
-      id: 4,
-      name: "Carl Smith",
-      score: 10,
+      id: 2,
+      name: "Jane Doe",
+      score: 50,
     },
     {
       id: 5,
