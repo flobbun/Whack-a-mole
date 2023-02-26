@@ -7,6 +7,8 @@ import { GameProvider } from "./contexts/GameContext";
 import Game from "./pages/Game/Game";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import Menu from "./pages/Menu/Menu";
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 export const useDocument = () => {
   const [myDocument, setMyDocument] = useState<Document | null>(null)
@@ -45,20 +47,22 @@ export const App = () => {
   return (
     <StrictMode>
       {doc && (
-        <BrowserRouter>
-          <Routes>
-            <Route path={RoutePaths.HOME}>
-              {routes.map(({ index, element, path }) => (
-                <Route
-                  key={path}
-                  index={index || false}
-                  path={path}
-                  element={element}
-                />
-              ))}
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Routes>
+              <Route path={RoutePaths.HOME}>
+                {routes.map(({ index, element, path }) => (
+                  <Route
+                    key={path}
+                    index={index || false}
+                    path={path}
+                    element={element}
+                  />
+                ))}
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </Provider>
       )}
     </StrictMode>
   );

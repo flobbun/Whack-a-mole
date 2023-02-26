@@ -1,19 +1,14 @@
 import { KaboomCtx, Vec2 } from "kaboom";
 import { useEffect, useState } from "react";
+import { GAME_CONFIG } from "../constants/GameConfig";
 
 /**
  * Hook to manage game entities (moles, holes, etc.)
  * @important Depends on the game context
  */
 const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
-    const maxMoles = 4;
-    const holesPerRow = 4;
-    const rows = 3;
-    const holeSize = 52;
-    const holeSpace = 32;
-    const moleSpawnInterval = 1 * 60;
-    const totalWidth = holesPerRow * (holeSize + holeSpace) - holeSpace;
-    const totalHeight = rows * (holeSize + holeSpace) - holeSpace;
+    const { HOLES_PER_ROW, HOLE_SIZE, HOLE_SPACING, MOLE_SPAWN_INTERVAL, MAX_MOLES, ROWS } = GAME_CONFIG;
+    const totalWidth = HOLES_PER_ROW * (HOLE_SIZE + HOLE_SPACING) - HOLE_SPACING;
     const [holePositions, setHolePositions] = useState<Vec2[]>([]);
 
     const setBackground = () => {
@@ -30,8 +25,8 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     const addHole = (position: Vec2) => {
         game?.add([
             sprite("hole", {
-                width: holeSize,
-                height: holeSize,
+                width: HOLE_SIZE,
+                height: HOLE_SIZE,
             }),
             game.origin("center"),
             layer("background"),
@@ -44,13 +39,13 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     const addHoles = () => {
         const startPos = {
             x: (game!.width() - totalWidth) / 2,
-            y: (game!.height() - totalHeight) / 2,
+            y: (game!.height() - totalWidth) / 2,
         }
 
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < holesPerRow; j++) {
-                const x = startPos.x + j * (holeSize + holeSpace);
-                const y = startPos.y + i * (holeSize + holeSpace);
+        for (let i = 0; i < ROWS; i++) {
+            for (let j = 0; j < HOLES_PER_ROW; j++) {
+                const x = startPos.x + j * (HOLE_SIZE + HOLE_SPACING);
+                const y = startPos.y + i * (HOLE_SIZE + HOLE_SPACING);
                 addHole(vec2(x, y));
             }
         }
@@ -59,8 +54,8 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     const addMole = (position: Vec2) => {
         return game?.add([
             sprite("mole", {
-                width: holeSize,
-                height: holeSize,
+                width: HOLE_SIZE,
+                height: HOLE_SIZE,
             }),
             lifespan(rand(0.4, 2), {
                 fade: 0.1
@@ -107,8 +102,8 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
             setBackground();
             addHoles();
             setCursorHammer();
-            game?.loop(moleSpawnInterval * dt(), () => {
-                if (game?.get("mole").length < maxMoles) {
+            game?.loop(MOLE_SPAWN_INTERVAL * dt(), () => {
+                if (game?.get("mole").length < MAX_MOLES) {
                     spawnRandomMole();
                 }
             });

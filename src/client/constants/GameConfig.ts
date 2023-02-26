@@ -1,0 +1,9 @@
+export const GAME_CONFIG = {
+    GAME_DURATION: 10,
+    MAX_MOLES: 4,
+    HOLES_PER_ROW: 4,
+    ROWS: 3,
+    HOLE_SIZE: 52,
+    HOLE_SPACING: 32,
+    MOLE_SPAWN_INTERVAL: 1 * 60,
+}

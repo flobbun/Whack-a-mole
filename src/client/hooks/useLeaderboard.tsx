@@ -4,7 +4,7 @@ import { Leaderboard } from "../interfaces/leaderboard";
 
 /**
  * @description Hook to fetch leaderboard data
- * @returns {Object} leaderboard, loading
+ * @returns leaderboard, loading
  */
 const useLeaderboard = () => {
     const [leaderboard, setLeaderboard] = useState<Leaderboard>([]);
@@ -19,11 +19,7 @@ const useLeaderboard = () => {
             },
         });
         const data = await response.json() as Leaderboard;
-        setLeaderboard(
-            data.sort((a, b) => {
-                return b.score - a.score;
-            })
-        );
+        setLeaderboard(data);
         setLoading(false);
         return data;
     };
