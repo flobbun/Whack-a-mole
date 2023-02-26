@@ -22,7 +22,7 @@ const Leaderboard = () => {
             {loading ? <p>Loading...</p> : (
                 <ul>
                     {getSortedLeaderboard().map((entry, index) => (
-                        <li key={index + entry.id}>{entry.name} - {entry.score} <small>🏆</small></li>
+                        <li key={index}>{entry.name} - {entry.score} <small>🏆</small></li>
                     ))}
                 </ul>
             )}

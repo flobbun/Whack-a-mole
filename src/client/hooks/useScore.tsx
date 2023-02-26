@@ -10,11 +10,11 @@ const useScore = (game: KaboomCtx | null, loaded: boolean) => {
         if (game && loaded) {
             const score = game?.add([
                 "score",
-                text("Score: 0"),
-                pos(20, 20),
-                scale(0.3),
+                game.text("Score: 0"),
+                game.pos(20, 20),
+                game.scale(0.3),
                 { value: 0 },
-                z(2),
+                game.z(2),
             ]);
 
             game?.on("whack", "mole", () => {

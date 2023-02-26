@@ -12,7 +12,7 @@ const useCollisions = (game: KaboomCtx | null, loaded: boolean) => {
             game.onClick("mole", (mole) => {
                 mole.trigger("whack");
                 mole.destroy();
-                shake(1.2);
+                game.shake(1.2);
             });
         }
     }, [game, loaded]);

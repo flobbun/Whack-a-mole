@@ -20,7 +20,7 @@ const useGameOver = (game: KaboomCtx | null, loaded: boolean) => {
                 game.pos(game.width() / 2, game.height() / 2),
                 game.origin("center"),
               ]);
-              ["mole", "hole", "score"].forEach((tag) => game.every(tag, destroy));
+              ["mole", "hole", "score"].forEach((tag) => game.every(tag, game.destroy));
               game.shake(10);
         }
     }

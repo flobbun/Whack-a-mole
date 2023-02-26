@@ -15,9 +15,8 @@ const GameProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (canvasRef.current) {
             setGame(kaboom({
-                global: true,
+                global: false,
                 scale: 2,
-                debug: true,
                 canvas: canvasRef.current,
             }));
         } else {

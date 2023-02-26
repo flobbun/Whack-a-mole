@@ -5,5 +5,5 @@ export const GAME_CONFIG = {
     ROWS: 3,
     HOLE_SIZE: 52,
     HOLE_SPACING: 32,
-    MOLE_SPAWN_INTERVAL: 1 * 60,
+    MOLE_SPAWN_INTERVAL: 60,
 }
