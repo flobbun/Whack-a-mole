@@ -1,0 +1,11 @@
+.root {
+    @apply flex flex-col gap-y-4 p-8 h-screen justify-center bg-gray-800 text-center text-gray-100;
+}
+
+.root h1 {
+    @apply text-8xl font-bold mb-24;
+}
+
+.root button {
+    @apply text-4xl uppercase bg-gray-800 hover:bg-gray-500 border-2 mt-8 text-white font-bold py-2 px-4 rounded-md;
+}

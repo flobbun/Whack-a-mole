@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../constants/RoutePaths";
 
 const Game = () => {
+  // const maxTime = 120;
+  const maxTime = 10;
   const navigate = useNavigate();
   const { canvasRef, game } = useGameContext();
   const { loaded } = useAssets(game);
@@ -18,7 +20,7 @@ const Game = () => {
 
   useEffect(() => {
     if (game && loaded) {
-      game.wait(120, () => {
+      game.wait(maxTime, () => {
         game.add([
           game.text("Game Over"),
           game.pos(game.width() / 2, game.height() / 2),

@@ -12,7 +12,6 @@ const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [game, setGame] = useState<KaboomCtx | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-
     useEffect(() => {
         if (canvasRef.current) {
             setGame(kaboom({

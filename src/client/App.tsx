@@ -6,6 +6,7 @@ import { RoutePaths } from "./constants/RoutePaths";
 import { GameProvider } from "./contexts/GameContext";
 import Game from "./pages/Game/Game";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
+import Menu from "./pages/Menu/Menu";
 
 export const useDocument = () => {
   const [myDocument, setMyDocument] = useState<Document | null>(null)
@@ -25,7 +26,7 @@ export const App = () => {
     {
       index: true,
       path: RoutePaths.HOME,
-      element: <>Menu...</>,
+      element: <Menu />,
     },
     {
       path: RoutePaths.GAME,
