@@ -16,7 +16,7 @@ const Game = () => {
 
   return (
     <div className={s.root}>
-      <canvas ref={canvasRef}></canvas>
+      <canvas data-testid="canvas" ref={canvasRef}></canvas>
     </div>
   );
 };

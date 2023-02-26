@@ -17,10 +17,10 @@ const Leaderboard = () => {
     };
 
     return (
-        <div className={s.root}>
+        <div  className={s.root}>
             <p>Leaderboard</p>
-            {loading ? <p>Loading...</p> : (
-                <ul>
+            {loading ? <p data-testid="loading">Loading...</p> : (
+                <ul data-testid="leaderboard">
                     {getSortedLeaderboard().map((entry, index) => (
                         <li key={index}>{entry.name} - {entry.score} <small>🏆</small></li>
                     ))}

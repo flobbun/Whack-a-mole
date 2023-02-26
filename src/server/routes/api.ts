@@ -56,7 +56,7 @@ const getLeaderboardFromDB = () => [
   {
     id: 11,
     name: "Anderson Doe",
-    score: 49,
+    score: 110,
   },
 ]
 
@@ -64,6 +64,8 @@ const getLeaderboardFromDB = () => [
  * @route GET /api
  */
 export const getLeaderboard = async (req: Request, res: Response) => {
-  const leaderboard = getLeaderboardFromDB().slice(0, 10);
+  const leaderboard = getLeaderboardFromDB()
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
   return res.status(200).json(leaderboard);
 };

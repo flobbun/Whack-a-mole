@@ -3,5 +3,5 @@
 }
 
 .root canvas {
-    @apply rounded-md;
+    @apply rounded-md w-full h-full;
 }

@@ -7,7 +7,7 @@ const Menu = () => {
         <div className={s.root}>
             <h1>Whack a mole</h1>
             <Link to={RoutePaths.GAME}>
-                <button>Start 🎮</button>
+                <button data-testid="start">Start 🎮</button>
             </Link>
             <Link to={RoutePaths.LEADERBOARD}>
                 <button>Leaderboard 📖</button>

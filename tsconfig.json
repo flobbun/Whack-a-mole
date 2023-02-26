@@ -20,7 +20,7 @@
     "sourceMap": true,
     "target": "ES2017"
   },
-  "include": ["src/**/*", "types/*", "server.ts", "node_modules/vite/types/*"],
+  "include": ["src/**/*", "types/*", "server.ts", "node_modules/vite/types/*", "cypress"],
   "ts-node": {
     "transpileOnly": true,
     "compilerOptions": {

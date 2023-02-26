@@ -1,14 +1,17 @@
 import kaboom, { KaboomCtx } from "kaboom";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
 
 interface GameContext {
     game: KaboomCtx | null;
     canvasRef: React.RefObject<HTMLCanvasElement>;
 }
 
-const GameContext = createContext<GameContext | null>(null);
+const GameContext = createContext<GameContext | null>({
+    game: null,
+    canvasRef: { current: null }
+});
 
-const GameProvider = ({ children }: { children: React.ReactNode }) => {
+const GameProvider = ({ children }: { children: ReactNode }) => {
 
     const [game, setGame] = useState<KaboomCtx | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,10 +22,8 @@ const GameProvider = ({ children }: { children: React.ReactNode }) => {
                 scale: 2,
                 canvas: canvasRef.current,
             }));
-        } else {
-            throw new Error("Canvas ref is not set");
         }
-    }, []);
+    }, [canvasRef]);
 
     return (
         <GameContext.Provider value={{

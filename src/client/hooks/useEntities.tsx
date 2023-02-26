@@ -9,6 +9,7 @@ import { GAME_CONFIG } from "../constants/GameConfig";
 const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
     const { HOLES_PER_ROW, HOLE_SIZE, HOLE_SPACING, MOLE_SPAWN_INTERVAL, MAX_MOLES, ROWS } = GAME_CONFIG;
     const totalWidth = HOLES_PER_ROW * (HOLE_SIZE + HOLE_SPACING) - HOLE_SPACING;
+    const totalHeight = ROWS * (HOLE_SIZE + HOLE_SPACING) - HOLE_SPACING;
     const [holePositions, setHolePositions] = useState<Vec2[]>([]);
 
     const setBackground = () => {
@@ -40,7 +41,7 @@ const useEntities = (game: KaboomCtx | null, loaded: boolean) => {
         if (game) {
             const startPos = {
                 x: (game!.width() - totalWidth) / 2,
-                y: (game!.height() - totalWidth) / 2,
+                y: (game!.height() - totalHeight) / 2,
             }
 
             for (let i = 0; i < ROWS; i++) {

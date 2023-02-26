@@ -1,5 +1,5 @@
 export const GAME_CONFIG = {
-    GAME_DURATION: 10,
+    GAME_DURATION: 120,
     MAX_MOLES: 4,
     HOLES_PER_ROW: 4,
     ROWS: 3,
