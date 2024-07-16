@@ -1,5 +1,3 @@
-# Gaming1 Challenge
-
 ## Description
 
 This is a game made with KaboomJS, React, and Redux. Here are the instructions to set up and run the game.
